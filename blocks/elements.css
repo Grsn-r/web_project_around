@@ -5,7 +5,7 @@
     margin: 10px 0;
     gap: 20px;
 }
-.blocks{
+.block{
     border-radius: 10px;
     overflow: hidden;
     display: flex;
