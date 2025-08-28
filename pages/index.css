@@ -1,0 +1,17 @@
+@import url(../vendor/fonts.css);
+@import url(../blocks/header.css);
+@import url(../blocks/profile.css);
+@import url(../blocks/page.css);
+@import url(../blocks/elements.css);
+body{
+    margin: 0;
+    background-color: rgba(0, 0, 0, 1);
+}
+.footer{
+    margin: 60px 0;
+    color: rgba(84, 84, 84, 1);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
