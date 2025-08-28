@@ -23,7 +23,7 @@
     height: 25px;
     margin: 25px 0;
 }
-.name{
+#name #about{
     font-weight: 400;
     font-size: 14px;
     color:rgba(0, 0, 0, 1);
@@ -49,4 +49,16 @@
     position: absolute;
     top: -30px;
     right: -30px;
+}
+@media screen and (max-width: 320px){
+    .form{
+        width:80%;
+        top: 110px;
+        left: 5%;
+        padding: 15px;
+    }
+    .form__close-icon{
+        right: 0;
+        height: 20px;
+    }
 }

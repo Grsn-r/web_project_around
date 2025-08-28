@@ -20,16 +20,29 @@ closeButton.addEventListener('click', hideForm);
 const profileInfo = profile.querySelector('.profile__info')
 const saveButton = form.querySelector('.save-button')
 
-function addProfileInfo(evt){
-evt.preventDefault();
-let name = form.querySelector('.name');
-let about = form.querySelector('.about');
+let profileName = form.querySelector('#name');
+let about = form.querySelector('#about');
 
 let nameElement = profileInfo.querySelector('.profile__info_name');
 let aboutElement = profileInfo.querySelector('.profile__info_explorer');
 
-nameElement.textContent = name.value;
+function addProfileInfo(evt){
+evt.preventDefault();
+nameElement.textContent = profileName.value;
 aboutElement.textContent = about.value;
 hideForm();   
 }
 saveButton.addEventListener('click',addProfileInfo);
+
+function validateContent(){
+if ((profileName.value === "") || (about.value === "")) {
+    saveButton.classList.add('save-button--disabled');
+    saveButton.disabled = true;
+} else {
+    saveButton.classList.remove('save-button--disabled');
+    saveButton.disabled = false;
+}
+}
+
+profileName.addEventListener('input', validateContent);
+about.addEventListener('input', validateContent);
