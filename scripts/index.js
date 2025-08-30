@@ -16,6 +16,7 @@ let aboutElement = profileInfo.querySelector('.profile__info_explorer');
 function showForm(){
     form.setAttribute("style", "display: flex");
     fade.setAttribute("style", "display: block");
+    saveButton.disabled = true;
     saveButton.classList.add('save-button--inactive');
 }
 

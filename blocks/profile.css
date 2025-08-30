@@ -67,6 +67,7 @@
     }
     .profile__add-button_img{
         margin: auto;
+        width:22px;
     }
     .profile__avatar{
         margin: auto;
