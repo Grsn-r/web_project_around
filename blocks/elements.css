@@ -36,5 +36,10 @@
     .elements{
         grid-template-rows: repeat(6, 1fr);
         grid-template-columns: 1fr;
+        margin: auto;
+    }
+    .block{
+    width: 15rem;
+    height: 21rem;
     }
 }
