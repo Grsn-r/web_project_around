@@ -9,3 +9,8 @@
         margin: 5px;
     }
 }
+@media screen and (max-width: 768px){
+    .page{
+        margin:0 135px;
+    }
+}
