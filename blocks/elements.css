@@ -32,6 +32,12 @@
 .block__button-black{
     background-image: url(../images/black-heart.svg);
 }
+@media screen and (max-width: 768px){
+    .elements{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+}
 @media screen and (max-width: 320px) {
     .elements{
         grid-template-rows: repeat(6, 1fr);
@@ -41,11 +47,5 @@
     .block{
     width: 15rem;
     height: 21rem;
-    }
-}
-@media screen and (max-width: 768px){
-    .elements{
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
     }
 }

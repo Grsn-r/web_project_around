@@ -4,13 +4,14 @@
     font-family: 'Inter';
     margin: 0 200px;
 }
-@media screen and (max-width: 320px) {
-    .page{
-        margin: 5px;
-    }
-}
 @media screen and (max-width: 768px){
     .page{
         margin:0 135px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .page{
+        margin: 0 5px 0;
     }
 }
