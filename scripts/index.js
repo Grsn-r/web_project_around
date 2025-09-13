@@ -28,6 +28,26 @@ function hideForm(){
 editButton.addEventListener('click', showForm);
 closeButton.addEventListener('click', hideForm);
 
+const newPlaceForm = document.querySelector(".new-place");
+const saveButtonNP = newPlaceForm.querySelector('.save-button-NP');
+
+function showformNewPlace(){
+    newPlaceForm.setAttribute('style', 'display: flex');
+    fade.setAttribute('style', 'display: block');
+    saveButtonNP.disabled = true;
+    saveButtonNP.classList.add('save-button--inactive');
+}
+
+function hideFormNewPlace(){
+    newPlaceForm.setAttribute('style', 'display: none');
+    fade.setAttribute('style', 'display: none');
+}
+
+const ProfileAddBtn = profile.querySelector('.profile__add-buton');
+
+ProfileAddBtn.addEventListener('click',showformNewPlace);
+closeButton.addEventListener('click', hideFormNewPlace);
+
 function addProfileInfo(evt){
 evt.preventDefault();
 nameElement.textContent = profileName.value;
