@@ -78,28 +78,43 @@ closeButtonNP.addEventListener('click', hideFormNewPlace);
 
 let titleNP = newPlaceForm.querySelector("#title");
 let imgUrl = newPlaceForm.querySelector("#img-url");
-let createButton = newPlaceForm.querySelector(".create-button");
+let createButton = newPlaceForm.querySelector(".create-button--NP");
 
 function validateContentNP(){
 if ((titleNP.value === "") || (imgUrl.value === "")) {
     createButton.disabled = true;
 } else {
     createButton.disabled = false;
-    createButton.classList.add(".create-button");
+    createButton.classList.remove("create-button--inactive");
 }
 }
-//clonar cartas
+titleNP.addEventListener('input', validateContentNP);
+imgUrl.addEventListener('input', validateContentNP);
+//clonar template para crear nuevas cartas
 const newCardTemplate = elements.querySelector("#new-card").content;
 const newCardFooter = newCardTemplate.querySelector(".block__ftr");
 
-const newCard = newCardTemplate.cloneNode(true);
-    newCard.querySelector("#user-img").src = imgUrl.value;
-    newCardFooter.querySelector("#new-card-title").textContent = titleNP.value;
-
 function addNewCard(evt){
     evt.preventDefault();
+    const newCard = newCardTemplate.cloneNode(true);
+    let newCardFooter = newCard.querySelector(".block__ftr");
+    let newCardImg = newCard.querySelector("#user-img");
+    newCardFooter.querySelector("#new-card-title").textContent = titleNP.value;
+    newCardImg.src = imgUrl.value
     elements.prepend(newCard);
     hideFormNewPlace();
 }
 
 createButton.addEventListener('click', addNewCard);
+
+//borrar cartas
+const eraseButton = elements.querySelectorAll(".block__erase-button");
+
+eraseButton.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const card = btn.closest(".block");
+        if (card) {
+            card.remove();
+        }
+    })
+})
