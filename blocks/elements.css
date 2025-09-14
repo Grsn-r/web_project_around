@@ -1,16 +1,25 @@
 .elements{
     display: grid;
-    grid-template-rows: 1fr 1fr;
     grid-template-columns: repeat(3, 1fr);
     margin: 10px 0;
     gap: 20px;
 }
 .block{
+    position: relative;
     border-radius: 10px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     background-color: rgba(255, 255, 255, 1);
+}
+.block__erase-button{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+.block__erase-button:hover{
+    opacity: 60%;
+    cursor: url(../images/puntero-custom.png), pointer;
 }
 .block__ftr{
     margin: 0 20px;
@@ -35,12 +44,10 @@
 @media screen and (max-width: 768px){
     .elements{
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
     }
 }
 @media screen and (max-width: 320px) {
     .elements{
-        grid-template-rows: repeat(6, 1fr);
         grid-template-columns: 1fr;
         margin: auto;
     }

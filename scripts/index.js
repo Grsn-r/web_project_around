@@ -12,7 +12,7 @@ let about = form.querySelector('#about');
 
 let nameElement = profileInfo.querySelector('.profile__info_name');
 let aboutElement = profileInfo.querySelector('.profile__info_explorer');
-
+//formulario de usuario
 function showForm(){
     form.setAttribute("style", "display: flex");
     fade.setAttribute("style", "display: block");
@@ -27,26 +27,6 @@ function hideForm(){
 
 editButton.addEventListener('click', showForm);
 closeButton.addEventListener('click', hideForm);
-
-const newPlaceForm = document.querySelector(".new-place");
-const saveButtonNP = newPlaceForm.querySelector('.save-button-NP');
-
-function showformNewPlace(){
-    newPlaceForm.setAttribute('style', 'display: flex');
-    fade.setAttribute('style', 'display: block');
-    saveButtonNP.disabled = true;
-    saveButtonNP.classList.add('save-button--inactive');
-}
-
-function hideFormNewPlace(){
-    newPlaceForm.setAttribute('style', 'display: none');
-    fade.setAttribute('style', 'display: none');
-}
-
-const ProfileAddBtn = profile.querySelector('.profile__add-buton');
-
-ProfileAddBtn.addEventListener('click',showformNewPlace);
-closeButton.addEventListener('click', hideFormNewPlace);
 
 function addProfileInfo(evt){
 evt.preventDefault();
@@ -68,7 +48,7 @@ if ((profileName.value === "") || (about.value === "")) {
 
 profileName.addEventListener('input', validateContent);
 about.addEventListener('input', validateContent);
-
+// boton me gusta
 const likeButton = elements.querySelector('.block__button')
 
 function likedPicture(){
@@ -76,3 +56,50 @@ function likedPicture(){
 }
 
 likeButton.addEventListener('click', likedPicture);
+//formualrio de new card
+let newPlaceForm = document.querySelector(".form--new-place");
+let closeButtonNP = newPlaceForm.querySelector(".form__close-icon-NP")
+
+function showformNewPlace(){
+    newPlaceForm.setAttribute('style', 'display: flex');
+    fade.setAttribute('style', 'display: block');
+    createButton.classList.add("create-button--inactive");
+}
+
+function hideFormNewPlace(){
+    newPlaceForm.setAttribute('style', 'display: none');
+    fade.setAttribute('style', 'display: none');
+}
+
+const ProfileAddBtn = profile.querySelector('.profile__add-button');
+
+ProfileAddBtn.addEventListener('click',showformNewPlace);
+closeButtonNP.addEventListener('click', hideFormNewPlace);
+
+let titleNP = newPlaceForm.querySelector("#title");
+let imgUrl = newPlaceForm.querySelector("#img-url");
+let createButton = newPlaceForm.querySelector(".create-button");
+
+function validateContentNP(){
+if ((titleNP.value === "") || (imgUrl.value === "")) {
+    createButton.disabled = true;
+} else {
+    createButton.disabled = false;
+    createButton.classList.add(".create-button");
+}
+}
+//clonar cartas
+const newCardTemplate = elements.querySelector("#new-card").content;
+const newCardFooter = newCardTemplate.querySelector(".block__ftr");
+
+const newCard = newCardTemplate.cloneNode(true);
+    newCard.querySelector("#user-img").src = imgUrl.value;
+    newCardFooter.querySelector("#new-card-title").textContent = titleNP.value;
+
+function addNewCard(evt){
+    evt.preventDefault();
+    elements.prepend(newCard);
+    hideFormNewPlace();
+}
+
+createButton.addEventListener('click', addNewCard);

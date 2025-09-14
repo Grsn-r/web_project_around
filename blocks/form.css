@@ -51,7 +51,7 @@
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 1);
 }
-.save-button-NP{
+.create-button{
     text-align: center;
     height: 50px;
     margin-top: 50px;
@@ -62,15 +62,30 @@
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 1);
 }
+.create-button--inactive{
+     background-color: transparent;
+    color: rgba(196, 196, 196, 1);
+}
 .save-button--inactive{
     background-color: transparent;
     color: rgba(196, 196, 196, 1);
+}
+.create-button:hover{
+    cursor: url(../images/puntero-custom.png), pointer;
+    opacity: 80%;
 }
 .save-button:hover{
     cursor: url(../images/puntero-custom.png), pointer;
     opacity: 80%;
 }
 .form__close-icon{
+    z-index: 2;
+    height: 30px;
+    position: absolute;
+    top: -30px;
+    right: -30px;
+}
+.form__close-icon-NP{
     z-index: 2;
     height: 30px;
     position: absolute;

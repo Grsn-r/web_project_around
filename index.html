@@ -33,14 +33,15 @@
             <button  class="save-button">Guardar</button>
         </form>
         <form class="form--new-place">
-            <img class="form__close-icon" src="./images/Close Icon.png" alt="boton de cierre">
+            <img class="form__close-icon-NP" src="./images/Close Icon.png" alt="boton de cierre">
             <h1 class="form__title">Nuevo lugar</h1>
             <input class="form__input" id="title" type="text" placeholder="Título" required>
-            <input class="form__input" id="img-link" type="text" placeholder="Enlace a imagen" required>
-            <button  class="save-button-NP">Guardar</button>
+            <input class="form__input" id="img-url" type="url" placeholder="Enlace a imagen" required>
+            <button  class="create-button">Crear</button>
         </form>
         <section class="elements">
             <div class="block">
+                <img src="./images/trash-btn.png" class="block__erase-button" alt="boton eliminar">
                 <img src="./images/elements/yosemithe.jpg" alt="lago yosemite">
                 <div class="block__ftr">
                     <p>Valle de Yosemite</p>
@@ -48,6 +49,7 @@
                 </div>
             </div>
              <div class="block">
+                <img src="./images/trash-btn.png" class="block__erase-button" alt="boton eliminar">
                 <img src="./images/elements/louise.png" alt="lago louise">
                 <div class="block__ftr">
                     <p>Lago Louise</p>
@@ -55,6 +57,7 @@
                 </div>
             </div>
              <div class="block">
+                <img src="./images/trash-btn.png" class="block__erase-button" alt="boton eliminar">
                 <img src="./images/elements/mtñCalvas.png" alt="montañas calvas">
                 <div class="block__ftr">
                     <p>Montañas Calvas</p>
@@ -62,6 +65,7 @@
                 </div>
             </div>
              <div class="block">
+                <img src="./images/trash-btn.png" class="block__erase-button" alt="boton eliminar">
                 <img src="./images/elements/latemar.png" alt="latemar">
                 <div class="block__ftr">
                     <p>Latemar</p>
@@ -69,6 +73,7 @@
                 </div>
             </div>
              <div class="block">
+                <img src="./images/trash-btn.png" class="block__erase-button" alt="boton eliminar">
                 <img src="./images/elements/vanois.png" alt="vanois national">
                 <div class="block__ftr">
                     <p>Vanois National...</p>
@@ -76,12 +81,23 @@
                 </div>
             </div>
              <div class="block">
+                <img src="./images/trash-btn.png" class="block__erase-button" alt="boton eliminar">
                 <img src="./images/elements/lago di braies.png" alt="lago dibraies">
                 <div class="block__ftr">
                     <p>Lago di Braies</p>
                     <img class="block__button" src="./images/elements-icon.svg" alt="icono de corazon">
                 </div>
             </div>
+            <template id="new-card">
+                <div class="block">
+                <img src="./images/trash-btn.png" class="block__erase-button" alt="boton eliminar">
+                <img src="" id="user-img" alt="imagen de usuario">
+                <div class="block__ftr">
+                    <p id="new-card-title"></p>
+                    <img class="block__button" src="./images/elements-icon.svg" alt="icono de corazon">
+                </div>
+            </div>
+            </template>
         </section>
         <footer class="footer">© 2025 Around The U.S.</footer>
     </div>
