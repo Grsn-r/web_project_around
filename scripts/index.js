@@ -118,3 +118,21 @@ eraseButton.forEach((btn) => {
         }
     })
 })
+// abrir imagen en grande
+const images = elements.querySelectorAll(".block__img");
+const imgTemplate = document.querySelector("#pop-up-img").content;
+const page = document.querySelector(".page")
+
+images.forEach((pic)=> {
+    pic.addEventListener('click', (evento) => {
+    console.log("Click detectado en imagen");
+    const imgFull = imgTemplate.cloneNode(true);
+    let imgCloseIcon = imgFull.querySelector(".close-icon");
+    let picture = imgFull.querySelector(".card-img");
+    let imgFtr = imgFull.querySelector(".img-footer");
+    picture.src = pic.src;
+    imgFtr.textContent = pic.closest(".block").querySelector(".block__ftr").textContent;
+    fade.setAttribute('style', 'display: block');
+    page.prepend(imgFull);
+    })
+})
