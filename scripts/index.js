@@ -48,14 +48,37 @@ if ((profileName.value === "") || (about.value === "")) {
 
 profileName.addEventListener('input', validateContent);
 about.addEventListener('input', validateContent);
+
+// abrir imagen en grande
+const images = elements.querySelectorAll(".block__img");
+const imgTemplate = document.querySelector("#pop-up-img").content;
+const page = document.querySelector(".page")
+
+images.forEach((pic)=> {
+    pic.addEventListener('click', (evento) => {
+    const imgFull = imgTemplate.cloneNode(true);
+    let imgCloseIcon = imgFull.querySelector(".close-icon");
+    let picture = imgFull.querySelector(".card-img");
+    let imgFtr = imgFull.querySelector(".img-footer");
+    picture.src = pic.src;
+    imgFtr.textContent = pic.closest(".block").querySelector(".block__ftr").textContent;
+    fade.setAttribute('style', 'display: block');
+    elements.prepend(imgFull);
+    imgCloseIcon.addEventListener('click', () =>{
+        const popUpElement = document.querySelector(".img-full");
+        popUpElement.remove();
+        fade.setAttribute('style', 'display: none');
+    })
+    })
+})
 // boton me gusta
-const likeButton = elements.querySelector('.block__button')
+const likeButtons = elements.querySelectorAll('.block__button')
 
-function likedPicture(){
-    likeButton.classList.toggle('block__button-black');
-}
-
-likeButton.addEventListener('click', likedPicture);
+likeButtons.forEach((like) =>{
+    like.addEventListener('click', () =>{
+        like.classList.toggle("block__button-black")
+    });
+})
 //formualrio de new card
 let newPlaceForm = document.querySelector(".form--new-place");
 let closeButtonNP = newPlaceForm.querySelector(".form__close-icon-NP")
@@ -90,7 +113,7 @@ if ((titleNP.value === "") || (imgUrl.value === "")) {
 }
 titleNP.addEventListener('input', validateContentNP);
 imgUrl.addEventListener('input', validateContentNP);
-//clonar template para crear nuevas cartas
+//clonar template para crear nuevas cards
 const newCardTemplate = elements.querySelector("#new-card").content;
 const newCardFooter = newCardTemplate.querySelector(".block__ftr");
 
@@ -100,14 +123,40 @@ function addNewCard(evt){
     let newCardFooter = newCard.querySelector(".block__ftr");
     let newCardImg = newCard.querySelector("#user-img");
     newCardFooter.querySelector("#new-card-title").textContent = titleNP.value;
-    newCardImg.src = imgUrl.value
+    newCardImg.src = imgUrl.value;
+    let eraseButtonNP = newCard.querySelector(".block__erase-button");
+    if (eraseButtonNP) {
+        eraseButtonNP.addEventListener('click', () => {
+            const cardToDelete = eraseButtonNP.closest(".block");
+            cardToDelete.remove();
+        });
+    }
+    let likeButtonNP = newCard.querySelector(".block__button");
+    likeButtonNP.addEventListener('click', ()=>{
+        likeButtonNP.classList.toggle("block__button-black");
+    })
+    newCardImg.addEventListener('click', () => {
+    const imgFull = imgTemplate.cloneNode(true);
+    let imgCloseIcon = imgFull.querySelector(".close-icon");
+    let picture = imgFull.querySelector(".card-img");
+    let imgFtr = imgFull.querySelector(".img-footer");
+    picture.src = newCardImg.src;
+    imgFtr.textContent = newCardImg.closest(".block").querySelector(".block__ftr").textContent;
+    fade.setAttribute('style', 'display: block');
+    elements.prepend(imgFull);
+    imgCloseIcon.addEventListener('click', () =>{
+        const popUpElement = document.querySelector(".img-full");
+        popUpElement.remove();
+        fade.setAttribute('style', 'display: none');
+    })
+    })
     elements.prepend(newCard);
     hideFormNewPlace();
 }
 
 createButton.addEventListener('click', addNewCard);
 
-//borrar cartas
+//borrar cards
 const eraseButton = elements.querySelectorAll(".block__erase-button");
 
 eraseButton.forEach((btn) => {
@@ -116,23 +165,5 @@ eraseButton.forEach((btn) => {
         if (card) {
             card.remove();
         }
-    })
-})
-// abrir imagen en grande
-const images = elements.querySelectorAll(".block__img");
-const imgTemplate = document.querySelector("#pop-up-img").content;
-const page = document.querySelector(".page")
-
-images.forEach((pic)=> {
-    pic.addEventListener('click', (evento) => {
-    console.log("Click detectado en imagen");
-    const imgFull = imgTemplate.cloneNode(true);
-    let imgCloseIcon = imgFull.querySelector(".close-icon");
-    let picture = imgFull.querySelector(".card-img");
-    let imgFtr = imgFull.querySelector(".img-footer");
-    picture.src = pic.src;
-    imgFtr.textContent = pic.closest(".block").querySelector(".block__ftr").textContent;
-    fade.setAttribute('style', 'display: block');
-    page.prepend(imgFull);
     })
 })

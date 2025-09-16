@@ -13,7 +13,9 @@
     background-color: rgba(255, 255, 255, 1);
 }
 .block__img{
-    max-height: 360px;
+    object-fit: cover;
+    height: 300px;
+    cursor: pointer;
 }
 .block__erase-button{
     position: absolute;
