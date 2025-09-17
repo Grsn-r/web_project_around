@@ -60,4 +60,7 @@
     width: 15rem;
     height: 21rem;
     }
+    .block__img{
+        max-height: 240px;
+    }
 }
