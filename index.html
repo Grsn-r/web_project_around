@@ -25,18 +25,22 @@
             </div>
         </section>
         <div class="fade"> </div>
-        <form class="form">
+        <form class="form" novalidate>
             <img class="form__close-icon" src="./images/Close Icon.png" alt="boton de cierre">
             <h1 class="form__title">Editar Perfil</h1>
-            <input class="form__input" id="name" type="text" placeholder="Nombre" required>
-            <input class="form__input" id="about" type="text" placeholder="Acerca de mi" required>
-            <button  class="save-button">Guardar</button>
+            <input class="form__input" id="name" type="text" placeholder="Nombre" minlength="2" maxlength="20" required>
+            <span class="name-error" id="name-error"></span>
+            <input class="form__input" id="about" type="text" placeholder="Acerca de mi" minlength="2" maxlength="200" required>
+            <span class="about-error" id="about-error"></span>
+            <button  class="save-button save-button--inactive" disabled>Guardar</button>
         </form>
-        <form class="form--new-place">
+        <form class="form--new-place" novalidate>
             <img class="form__close-icon-NP" src="./images/Close Icon.png" alt="boton de cierre">
             <h1 class="form__title">Nuevo lugar</h1>
             <input class="form__input" id="title" type="text" placeholder="Título" required>
+            <span class="title-error"></span>
             <input class="form__input" id="img-url" type="url" placeholder="Enlace a imagen" required>
+            <span class="umg-url-error"></span>
             <button  class="create-button--NP">Crear</button>
         </form>
         <section class="elements">

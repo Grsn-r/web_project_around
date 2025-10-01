@@ -34,20 +34,47 @@ nameElement.textContent = profileName.value;
 aboutElement.textContent = about.value;
 hideForm();   
 }
+
+// validar formulario de perfil
+const formInput = Array.from(form.querySelectorAll(".form__input"));
+
+const showError = (input, errorMessage) => {
+    const formError = form.querySelector(`#${input.id}-error`);
+    input.classList.add("form__input_invalid");
+    formError.textContent = errorMessage;
+    formError.classList.add("form__input-error");
+}
+const hideError = (input) => {
+    const formError = form.querySelector(`#${input.id}-error`);
+    input.classList.remove("form__input_invalid");
+    formError.classList.remove("form__input-error");
+    formError.textContent = "";
+}
+const validateInput = (input) => {
+    if (!input.validity.valid) {
+        showError(input, input.validationMessage);
+    } else {
+        hideError(input);
+    };
+};
+const toggleButton = () => {
+    const isInputValid = formInput.every((input) => input.validity.valid);
+    if (!isInputValid) {
+        saveButton.disabled = true;
+        saveButton.classList.add("save-button--innactive");
+    } else {
+        saveButton.disabled = false;
+        saveButton.classList.remove("save-button--innactive")
+    }
+};
+
+formInput.forEach((input) => {
+    input.addEventListener("input", () => {
+    validateInput(input);
+    toggleButton();
+});
+});
 saveButton.addEventListener('click',addProfileInfo);
-
-function validateContent(){
-if ((profileName.value === "") || (about.value === "")) {
-    saveButton.disabled = true;
-    saveButton.classList.add('save-button--inactive');
-} else {
-    saveButton.disabled = false;
-    saveButton.classList.remove('save-button--inactive');
-}
-}
-
-profileName.addEventListener('input', validateContent);
-about.addEventListener('input', validateContent);
 
 // abrir imagen en grande
 const images = elements.querySelectorAll(".block__img");
