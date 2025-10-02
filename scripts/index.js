@@ -12,7 +12,7 @@ let about = form.querySelector('#about');
 
 let nameElement = profileInfo.querySelector('.profile__info_name');
 let aboutElement = profileInfo.querySelector('.profile__info_explorer');
-//formulario de usuario
+//formulario de perfil
 function showForm(){
     form.setAttribute("style", "display: flex");
     fade.setAttribute("style", "display: block");
@@ -27,6 +27,12 @@ function hideForm(){
 
 editButton.addEventListener('click', showForm);
 closeButton.addEventListener('click', hideForm);
+fade.addEventListener('click', hideForm);
+document.addEventListener('keydown', (evt) => {
+    if (evt.key === "Escape") {
+        hideForm();
+    }
+})
 
 function addProfileInfo(evt){
 evt.preventDefault();
@@ -35,7 +41,7 @@ aboutElement.textContent = about.value;
 hideForm();   
 }
 
-// validar formulario de perfil
+// validar formulario perfil
 const formInput = Array.from(form.querySelectorAll(".form__input"));
 
 const showError = (input, errorMessage) => {
@@ -61,10 +67,10 @@ const toggleButton = () => {
     const isInputValid = formInput.every((input) => input.validity.valid);
     if (!isInputValid) {
         saveButton.disabled = true;
-        saveButton.classList.add("save-button--innactive");
+        saveButton.classList.add("save-button--inactive");
     } else {
         saveButton.disabled = false;
-        saveButton.classList.remove("save-button--innactive")
+        saveButton.classList.remove("save-button--inactive")
     }
 };
 
@@ -128,18 +134,53 @@ closeButtonNP.addEventListener('click', hideFormNewPlace);
 
 let titleNP = newPlaceForm.querySelector("#title");
 let imgUrl = newPlaceForm.querySelector("#img-url");
-let createButton = newPlaceForm.querySelector(".create-button--NP");
+let createButton = newPlaceForm.querySelector(".create-button");
+//validacion NP
+const formInputNP = Array.from(newPlaceForm.querySelectorAll(".form__input"));
 
-function validateContentNP(){
-if ((titleNP.value === "") || (imgUrl.value === "")) {
-    createButton.disabled = true;
-} else {
-    createButton.disabled = false;
-    createButton.classList.remove("create-button--inactive");
+const showErrorNP = (input, errorMessage) => {
+    const formError = newPlaceForm.querySelector(`#${input.id}-error`);
+    input.classList.add("form__input_invalid");
+    formError.textContent = errorMessage;
+    formError.classList.add("form__input-error");
 }
+const hideErrorNP = (input) => {
+    const formError = newPlaceForm.querySelector(`#${input.id}-error`);
+    input.classList.remove("form__input_invalid");
+    formError.classList.remove("form__input-error");
+    formError.textContent = "";
 }
-titleNP.addEventListener('input', validateContentNP);
-imgUrl.addEventListener('input', validateContentNP);
+const validateInputNP = (input) => {
+    if (!input.validity.valid) {
+        showErrorNP(input, input.validationMessage);
+    } else {
+        hideErrorNP(input);
+    };
+};
+const toggleButtonNP = () => {
+    const isInputValidNP = formInputNP.every((input) => input.validity.valid);
+    if (!isInputValidNP) {
+        createButton.disabled = true;
+        createButton.classList.add("create-button--inactive");
+    } else {
+        createButton.disabled = false;
+        createButton.classList.remove("create-button--inactive")
+    }
+};
+
+formInputNP.forEach((input) => {
+    input.addEventListener("input", () => {
+    validateInputNP(input);
+    toggleButtonNP();
+});
+});
+createButton.addEventListener('click',addProfileInfo);
+fade.addEventListener('click', hideFormNewPlace);
+document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+        hideFormNewPlace();
+    }
+})
 //clonar template para crear nuevas cards
 const newCardTemplate = elements.querySelector("#new-card").content;
 const newCardFooter = newCardTemplate.querySelector(".block__ftr");
