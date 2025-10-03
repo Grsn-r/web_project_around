@@ -102,8 +102,15 @@ images.forEach((pic)=> {
         popUpElement.remove();
         fade.setAttribute('style', 'display: none');
     })
-    })
-})
+    document.addEventListener('keydown', (evt) => {
+        if (evt.key === 'Escape') {
+        const popUpElement = document.querySelector(".img-full");
+        popUpElement.remove();
+        fade.setAttribute('style', 'display: none');
+        }
+    });
+    });
+});
 // boton me gusta
 const likeButtons = elements.querySelectorAll('.block__button')
 
