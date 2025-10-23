@@ -83,12 +83,6 @@ formInput.forEach((input) => {
 });
 saveButton.addEventListener('click',addProfileInfo);
 
-// abrir imagen en grande
-const images = elements.querySelectorAll(".block__img");
-const imgTemplate = document.querySelector("#pop-up-img").content;
-const page = document.querySelector(".page")
-
-
 //formualrio de new card
 let newPlaceForm = document.querySelector(".form--new-place");
 let closeButtonNP = newPlaceForm.querySelector(".form__close-icon-NP")

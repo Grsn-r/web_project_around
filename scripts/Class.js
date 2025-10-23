@@ -30,11 +30,11 @@ export class Cards{
             like.classList.toggle("block__button-black")
         });
         img.addEventListener('click', () =>{
-            this.img.getFullImage();
+            this.getFullImage();
         })
     }
     getFullImage(){
-        const imgFull = imgTemplate.cloneNode(true);
+        const imgFull = this.imgTemplate.cloneNode(true);
         const imgCloseIcon = imgFull.querySelector(".close-icon");
         const picture = imgFull.querySelector(".card-img");
         const imgFtr = imgFull.querySelector(".img-footer");
@@ -43,6 +43,10 @@ export class Cards{
         imgFtr.textContent = this.name;
         this.fade.setAttribute('style', 'display: block');
         this.elements.prepend(imgFull);
+
+        this.fade.addEventListener('click', () => {
+            this.closeFullImage();
+        })
 
         imgCloseIcon.addEventListener('click', () => {
             this.closeFullImage();
