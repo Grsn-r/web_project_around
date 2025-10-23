@@ -1,3 +1,32 @@
+import {Cards} from "./Class.js";
+
+const initialCards = [
+  {
+    name: "Valle de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg"
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg"
+  },
+  {
+    name: "Montañas Calvas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg"
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg"
+  },
+  {
+    name: "Parque Nacional de la Vanoise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg"
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg"
+  }
+];
+
 const profile = document.querySelector('.profile')
 const editButton = profile.querySelector('.edit-button')
 const form = document.querySelector('.form')
@@ -59,38 +88,7 @@ const images = elements.querySelectorAll(".block__img");
 const imgTemplate = document.querySelector("#pop-up-img").content;
 const page = document.querySelector(".page")
 
-images.forEach((pic)=> {
-    pic.addEventListener('click', (evento) => {
-    const imgFull = imgTemplate.cloneNode(true);
-    let imgCloseIcon = imgFull.querySelector(".close-icon");
-    let picture = imgFull.querySelector(".card-img");
-    let imgFtr = imgFull.querySelector(".img-footer");
-    picture.src = pic.src;
-    imgFtr.textContent = pic.closest(".block").querySelector(".block__ftr").textContent;
-    fade.setAttribute('style', 'display: block');
-    elements.prepend(imgFull);
-    imgCloseIcon.addEventListener('click', () =>{
-        const popUpElement = document.querySelector(".img-full");
-        popUpElement.remove();
-        fade.setAttribute('style', 'display: none');
-    })
-    document.addEventListener('keydown', (evt) => {
-        if (evt.key === 'Escape') {
-        const popUpElement = document.querySelector(".img-full");
-        popUpElement.remove();
-        fade.setAttribute('style', 'display: none');
-        }
-    });
-    });
-});
-// boton me gusta
-const likeButtons = elements.querySelectorAll('.block__button')
 
-likeButtons.forEach((like) =>{
-    like.addEventListener('click', () =>{
-        like.classList.toggle("block__button-black")
-    });
-})
 //formualrio de new card
 let newPlaceForm = document.querySelector(".form--new-place");
 let closeButtonNP = newPlaceForm.querySelector(".form__close-icon-NP")
@@ -133,56 +131,16 @@ document.addEventListener('keydown', (evt) => {
     }
 })
 //clonar template para crear nuevas cards
-const newCardTemplate = elements.querySelector("#new-card").content;
-const newCardFooter = newCardTemplate.querySelector(".block__ftr");
-
-function addNewCard(evt){
-    evt.preventDefault();
-    const newCard = newCardTemplate.cloneNode(true);
-    let newCardFooter = newCard.querySelector(".block__ftr");
-    let newCardImg = newCard.querySelector("#user-img");
-    newCardFooter.querySelector("#new-card-title").textContent = titleNP.value;
-    newCardImg.src = imgUrl.value;
-    let eraseButtonNP = newCard.querySelector(".block__erase-button");
-    if (eraseButtonNP) {
-        eraseButtonNP.addEventListener('click', () => {
-            const cardToDelete = eraseButtonNP.closest(".block");
-            cardToDelete.remove();
-        });
-    }
-    let likeButtonNP = newCard.querySelector(".block__button");
-    likeButtonNP.addEventListener('click', ()=>{
-        likeButtonNP.classList.toggle("block__button-black");
-    })
-    newCardImg.addEventListener('click', () => {
-    const imgFull = imgTemplate.cloneNode(true);
-    let imgCloseIcon = imgFull.querySelector(".close-icon");
-    let picture = imgFull.querySelector(".card-img");
-    let imgFtr = imgFull.querySelector(".img-footer");
-    picture.src = newCardImg.src;
-    imgFtr.textContent = newCardImg.closest(".block").querySelector(".block__ftr").textContent;
-    fade.setAttribute('style', 'display: block');
-    elements.prepend(imgFull);
-    imgCloseIcon.addEventListener('click', () =>{
-        const popUpElement = document.querySelector(".img-full");
-        popUpElement.remove();
-        fade.setAttribute('style', 'display: none');
-    })
-    })
-    elements.prepend(newCard);
-    hideFormNewPlace();
+const createCard = ( name, link ) => {
+    const cardElement = new Cards(name, link).getCard();
+    elements.prepend(cardElement);
 }
+initialCards.forEach((item) =>{
+    createCard(item.name, item.link );
+});
 
-createButton.addEventListener('click', addNewCard);
-
-//borrar cards
-const eraseButton = elements.querySelectorAll(".block__erase-button");
-
-eraseButton.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        const card = btn.closest(".block");
-        if (card) {
-            card.remove();
-        }
-    })
-})
+createButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    createCard(titleNP.value, imgUrl.value );
+    hideFormNewPlace();
+});
