@@ -44,8 +44,10 @@ export class Cards{
         this.fade.setAttribute('style', 'display: block');
         this.elements.prepend(imgFull);
 
-        this.fade.addEventListener('click', () => {
-            this.closeFullImage();
+        this.fade.addEventListener('click', (evt) => {
+            if (evt.target === this.fade) {
+                this.closeFullImage();
+            }
         })
 
         imgCloseIcon.addEventListener('click', () => {
