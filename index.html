@@ -32,7 +32,7 @@
             <span id="name-error"></span>
             <input class="form__input" id="about" type="text" placeholder="Acerca de mi" minlength="2" maxlength="200" required>
             <span id="about-error"></span>
-            <button  class="save-button save-button--inactive" disabled>Guardar</button>
+            <button type="submit" class="save-button save-button--inactive" disabled>Guardar</button>
         </form>
         <form class="form--new-place" novalidate>
             <img class="form__close-icon-NP" src="./images/Close Icon.png" alt="boton de cierre">
@@ -41,7 +41,7 @@
             <span id="title-error"></span>
             <input class="form__input" id="img-url" type="url" placeholder="Enlace a imagen" required>
             <span id="img-url-error"></span>
-            <button  class="create-button">Crear</button>
+            <button type="submit" class="save-button save-button--inactive">Crear</button>
         </form>
         <section class="elements">
             <template id="new-card">
@@ -65,6 +65,5 @@
         </div>
     </template>
     <script src="./scripts/index.js" type="module"></script>
-    <script src="./scripts/Class.js" type="module"></script>
 </body>
 </html>

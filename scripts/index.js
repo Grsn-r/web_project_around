@@ -1,4 +1,5 @@
-import {Cards} from "./Class.js";
+import {Cards} from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
 
 const initialCards = [
   {
@@ -45,8 +46,6 @@ let aboutElement = profileInfo.querySelector('.profile__info_explorer');
 function showForm(){
     form.setAttribute("style", "display: flex");
     fade.setAttribute("style", "display: block");
-    saveButton.disabled = true;
-    saveButton.classList.add('save-button--inactive');
 }
 
 function hideForm(){
@@ -63,25 +62,23 @@ document.addEventListener('keydown', (evt) => {
     }
 })
 
-function addProfileInfo(evt){
-evt.preventDefault();
+function addProfileInfo(){
 nameElement.textContent = profileName.value;
 aboutElement.textContent = about.value;
 hideForm();   
 }
 
 // validar formulario perfil
-const formInput = Array.from(form.querySelectorAll(".form__input"));
 
-import { validateInput, toggleButton } from "./validate.js"
+const validateProfile = new FormValidator(form);
 
-formInput.forEach((input) => {
-    input.addEventListener("input", () => {
-    validateInput(input);
-    toggleButton();
+validateProfile.enableValidation();
+
+form.addEventListener('submit', (evt)=>{
+  evt.preventDefault();
+  addProfileInfo();
+  hideForm();
 });
-});
-saveButton.addEventListener('click',addProfileInfo);
 
 //formualrio de new card
 let newPlaceForm = document.querySelector(".form--new-place");
@@ -90,7 +87,6 @@ let closeButtonNP = newPlaceForm.querySelector(".form__close-icon-NP")
 function showformNewPlace(){
     newPlaceForm.setAttribute('style', 'display: flex');
     fade.setAttribute('style', 'display: block');
-    createButton.classList.add("create-button--inactive");
 }
 
 function hideFormNewPlace(){
@@ -105,25 +101,20 @@ closeButtonNP.addEventListener('click', hideFormNewPlace);
 
 let titleNP = newPlaceForm.querySelector("#title");
 let imgUrl = newPlaceForm.querySelector("#img-url");
-let createButton = newPlaceForm.querySelector(".create-button");
-//validacion NP
+
+//validacion New Card
 const formInputNP = Array.from(newPlaceForm.querySelectorAll(".form__input"));
 
-import { validateInputNP, toggleButtonNP } from "./validate.js"
+const validateNewCard = new FormValidator(newPlaceForm);
 
-formInputNP.forEach((input) => {
-    input.addEventListener("input", () => {
-    validateInputNP(input);
-    toggleButtonNP();
+validateNewCard.enableValidation();
+
+newPlaceForm.addEventListener('submit', (evt)=>{
+  evt.preventDefault();
+  createCard(titleNP.value, imgUrl.value );
+  hideFormNewPlace();
 });
-});
-createButton.addEventListener('click',addProfileInfo);
-fade.addEventListener('click', hideFormNewPlace);
-document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-        hideFormNewPlace();
-    }
-})
+
 //clonar template para crear nuevas cards
 const createCard = ( name, link ) => {
     const cardElement = new Cards(name, link).getCard();
@@ -131,10 +122,4 @@ const createCard = ( name, link ) => {
 }
 initialCards.forEach((item) =>{
     createCard(item.name, item.link );
-});
-
-createButton.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    createCard(titleNP.value, imgUrl.value );
-    hideFormNewPlace();
 });
