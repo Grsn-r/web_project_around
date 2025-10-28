@@ -72,9 +72,6 @@
     .profile__avatar{
         margin: auto;
     }
-    .profile__info{
-        text-align: center;
-    }
     .profile__info_name{
         font-size: 22px;
     }
