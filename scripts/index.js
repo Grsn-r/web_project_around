@@ -1,5 +1,6 @@
-import {Cards} from "./Card.js";
+import {Card} from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import Section from "./Section.js"
 
 const initialCards = [
   {
@@ -103,23 +104,27 @@ let titleNP = newPlaceForm.querySelector("#title");
 let imgUrl = newPlaceForm.querySelector("#img-url");
 
 //validacion New Card
-const formInputNP = Array.from(newPlaceForm.querySelectorAll(".form__input"));
-
 const validateNewCard = new FormValidator(newPlaceForm);
 
 validateNewCard.enableValidation();
 
 newPlaceForm.addEventListener('submit', (evt)=>{
   evt.preventDefault();
-  createCard(titleNP.value, imgUrl.value );
+  const newCard = {
+    name: titleNP.value,
+    link: imgUrl.value
+  }
   hideFormNewPlace();
+  return newCard;
 });
 
-//clonar template para crear nuevas cards
-const createCard = ( name, link ) => {
-    const cardElement = new Cards(name, link).getCard();
-    elements.prepend(cardElement);
-}
+// nuevas cards
+
+
 initialCards.forEach((item) =>{
     createCard(item.name, item.link );
 });
+
+//instancia de Section
+
+
