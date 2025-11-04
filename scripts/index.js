@@ -1,6 +1,7 @@
-import {Card} from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import Section from "./Section.js";
+import {Card} from "./components/Card.js";
+import { FormValidator } from "./components/FormValidator.js";
+import Section from "./components/Section.js";
+import Popup from "./components/popup.js";
 
 const initialCards = [
   {
@@ -35,8 +36,7 @@ const form = document.querySelector('.form')
 const closeButton = form.querySelector('.form__close-icon')
 const fade = document.querySelector('.fade')
 const profileInfo = profile.querySelector('.profile__info')
-const saveButton = form.querySelector('.save-button')
-const elements = document.querySelector('.elements')
+
 
 let profileName = form.querySelector('#name');
 let about = form.querySelector('#about');
@@ -44,29 +44,15 @@ let about = form.querySelector('#about');
 let nameElement = profileInfo.querySelector('.profile__info_name');
 let aboutElement = profileInfo.querySelector('.profile__info_explorer');
 //formulario de perfil
-function showForm(){
-    form.setAttribute("style", "display: flex");
-    fade.setAttribute("style", "display: block");
-}
 
-function hideForm(){
-    form.setAttribute("style", "display: none");
-    fade.setAttribute("style", "display: none");
-}
-
-editButton.addEventListener('click', showForm);
-closeButton.addEventListener('click', hideForm);
-fade.addEventListener('click', hideForm);
-document.addEventListener('keydown', (evt) => {
-    if (evt.key === "Escape") {
-        hideForm();
-    }
-})
+const editProfilePopup = new Popup(form);
+editButton.addEventListener('click', () =>{
+  editProfilePopup.open()
+});
 
 function addProfileInfo(){
 nameElement.textContent = profileName.value;
-aboutElement.textContent = about.value;
-hideForm();   
+aboutElement.textContent = about.value; 
 }
 
 // validar formulario perfil
@@ -78,7 +64,6 @@ validateProfile.enableValidation();
 form.addEventListener('submit', (evt)=>{
   evt.preventDefault();
   addProfileInfo();
-  hideForm();
 });
 
 //formualrio de new card
