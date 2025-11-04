@@ -1,6 +1,6 @@
 import {Card} from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import Section from "./Section.js"
+import Section from "./Section.js";
 
 const initialCards = [
   {
@@ -110,21 +110,20 @@ validateNewCard.enableValidation();
 
 newPlaceForm.addEventListener('submit', (evt)=>{
   evt.preventDefault();
-  const newCard = {
-    name: titleNP.value,
-    link: imgUrl.value
-  }
+  createCard(titleNP.value, imgUrl.value );
   hideFormNewPlace();
-  return newCard;
 });
 
 // nuevas cards
 
+const createCard = ( name, link ) => {
+    const cardElement = new Card(name, link).getCard();
+    return cardElement;
+}
 
-initialCards.forEach((item) =>{
-    createCard(item.name, item.link );
-});
-
-//instancia de Section
-
-
+const cardSection = new Section({items: initialCards, 
+  renderer: (cardData) => {
+    return createCard(cardData.name, cardData.link);
+  }
+}, '.elements');
+cardSection.renderItems();
