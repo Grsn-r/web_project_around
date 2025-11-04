@@ -17,10 +17,10 @@ export default class Popup{
     }
 
     _handleEscapeClose(){
-        document.addEventListener('keydown', (evt) =>{
+        return (evt) => {
             if (evt.key === "Escape") {
                 this.close()}
-    });
+            }
     }
     setEventListeners(){
         this._closeIcon.addEventListener('click', () =>{

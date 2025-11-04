@@ -1,11 +1,10 @@
 export class Card{
-    constructor(name, link ) {
+    constructor(name, link, handleCardClick ) {
         this.name = name;
         this.link = link;
-        this.fade = document.querySelector('.fade');
+        this.handleCardClick = handleCardClick;
         this.elements = document.querySelector('.elements');
         this.template = document.querySelector("#new-card").content.querySelector(".block");
-        this.imgTemplate  = document.querySelector("#pop-up-img").content;
     }
     getCloneCard(){
         return this.template.cloneNode(true);
@@ -30,9 +29,16 @@ export class Card{
             like.classList.toggle("block__button-black")
         });
         img.addEventListener('click', () =>{
-            this.getFullImage();
+            this.handleCardClick({
+                src: this.link,
+                alt: this.name,
+                caption: this.name
+            });
         })
     }
+}
+
+
     getFullImage(){
         const imgFull = this.imgTemplate.cloneNode(true);
         const imgCloseIcon = imgFull.querySelector(".close-icon");
@@ -55,7 +61,6 @@ export class Card{
         })
         document.addEventListener('keydown', (evt) => {
         if (evt.key === 'Escape') {
-            this.closeFullImage();
         }
         });
     }
@@ -66,5 +71,4 @@ export class Card{
             this.fade.setAttribute('style', 'display: none');
         }
     }
-}
 
