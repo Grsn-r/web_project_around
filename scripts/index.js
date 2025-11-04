@@ -33,8 +33,6 @@ const initialCards = [
 const profile = document.querySelector('.profile')
 const editButton = profile.querySelector('.edit-button')
 const form = document.querySelector('.form')
-const closeButton = form.querySelector('.form__close-icon')
-const fade = document.querySelector('.fade')
 const profileInfo = profile.querySelector('.profile__info')
 
 
@@ -47,7 +45,8 @@ let aboutElement = profileInfo.querySelector('.profile__info_explorer');
 
 const editProfilePopup = new Popup(form);
 editButton.addEventListener('click', () =>{
-  editProfilePopup.open()
+  editProfilePopup.open();
+  editProfilePopup.setEventListeners();
 });
 
 function addProfileInfo(){
@@ -68,22 +67,13 @@ form.addEventListener('submit', (evt)=>{
 
 //formualrio de new card
 let newPlaceForm = document.querySelector(".form--new-place");
-let closeButtonNP = newPlaceForm.querySelector(".form__close-icon-NP")
+const addCardButton = profile.querySelector('.profile__add-button');
 
-function showformNewPlace(){
-    newPlaceForm.setAttribute('style', 'display: flex');
-    fade.setAttribute('style', 'display: block');
-}
-
-function hideFormNewPlace(){
-    newPlaceForm.setAttribute('style', 'display: none');
-    fade.setAttribute('style', 'display: none');
-}
-
-const ProfileAddBtn = profile.querySelector('.profile__add-button');
-
-ProfileAddBtn.addEventListener('click',showformNewPlace);
-closeButtonNP.addEventListener('click', hideFormNewPlace);
+const newCardPopup = new Popup(newPlaceForm);
+addCardButton.addEventListener('click', ()=>{
+  newCardPopup.open();
+  newCardPopup.setEventListeners();
+})
 
 let titleNP = newPlaceForm.querySelector("#title");
 let imgUrl = newPlaceForm.querySelector("#img-url");
