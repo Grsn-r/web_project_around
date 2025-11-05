@@ -1,8 +1,7 @@
 export default class Card{
-    constructor(name, link, handleCardClick ) {
+    constructor(name, link) {
         this.name = name;
         this.link = link;
-        this.handleCardClick = handleCardClick;
         this.template = document.querySelector("#new-card").content.querySelector(".block");
     }
     getCloneCard(){
@@ -20,19 +19,12 @@ export default class Card{
     eraseCard(){
         this.element.remove();
     }
-    setEventListeners(erase, like, img){
+    setEventListeners(erase, like){
         erase.addEventListener('click', () => {
             this.eraseCard();
         });
         like.addEventListener('click', ()=> {
             like.classList.toggle("block__button-black")
         });
-        img.addEventListener('click', () =>{
-            this.handleCardClick({
-                src: this.link,
-                alt: this.name,
-                caption: this.name
-            });
-        })
     }
 }

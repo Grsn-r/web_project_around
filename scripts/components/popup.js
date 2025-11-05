@@ -1,9 +1,7 @@
 export default class Popup{
     constructor(popupSelector){
         this._popup = document.querySelector(popupSelector);
-        this.closeIcon = this._popup.querySelector('.form__close-icon') || 
-        this._popup.querySelector('.close-icon');
-    console.log('Close icon encontrado:', this._closeIcon);
+        this.closeIcon = this._popup.querySelector('.form__close-icon');
         this._fade = document.querySelector('.fade');
     }
     open(){

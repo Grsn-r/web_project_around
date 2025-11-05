@@ -3,6 +3,8 @@ import FormValidator from "./components/FormValidator.js";
 import Section from "./components/Section.js";
 import Popup from "./components/popup.js";
 import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithform.js";
+import UserInfo from "./components/UserInfo.js";
 
 const initialCards = [
   {
@@ -44,16 +46,10 @@ let nameElement = profileInfo.querySelector('.profile__info_name');
 let aboutElement = profileInfo.querySelector('.profile__info_explorer');
 //formulario de perfil
 
-const editProfilePopup = new Popup('.form');
-editButton.addEventListener('click', () =>{
-  editProfilePopup.open();
-  editProfilePopup.setEventListeners();
+const editProfilePopup = new PopupWithForm('#edit-popup', (formData)=>{
+  develop
 });
-
-function addProfileInfo(){
-nameElement.textContent = profileName.value;
-aboutElement.textContent = about.value; 
-}
+editProfilePopup.setEventListeners();
 
 // validar formulario perfil
 
@@ -67,14 +63,9 @@ form.addEventListener('submit', (evt)=>{
 });
 
 //formualrio de new card
-let newPlaceForm = document.querySelector(".form--new-place");
+let newPlaceForm = document.querySelector('.form--new-place');
 const addCardButton = profile.querySelector('.profile__add-button');
 
-const newCardPopup = new Popup(".form--new-place");
-addCardButton.addEventListener('click', ()=>{
-  newCardPopup.open();
-  newCardPopup.setEventListeners();
-})
 
 let titleNP = newPlaceForm.querySelector("#title");
 let imgUrl = newPlaceForm.querySelector("#img-url");
@@ -91,15 +82,10 @@ newPlaceForm.addEventListener('submit', (evt)=>{
 });
 //popup de imagenes
 
-const imagePopup = new PopupWithImage('#image-popup');
-imagePopup.setEventListeners();
-function handleCardClick(imageData) {
-    imagePopup.open(imageData.caption, imageData.src);
-}
 // nuevas cards
 
 const createCard = ( name, link ) => {
-    const cardElement = new Card(name, link, handleCardClick).getCard();
+    const cardElement = new Card(name, link).getCard();
     return cardElement;
 }
 
