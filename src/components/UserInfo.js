@@ -1,9 +1,9 @@
 export default class UserInfo{
-    constructor(name, job){
+    constructor(userSelector){
 const profile = document.querySelector('.profile');
 const profileInfo = profile.querySelector('.profile__info');
-        this._name = profileInfo.querySelector(name);
-        this._job = profileInfo.querySelector(job);
+        this._name = profileInfo.querySelector(userSelector.name);
+        this._job = profileInfo.querySelector(userSelector.job);
     }
 
     getUserInfo(){

@@ -43,10 +43,15 @@ let about = form.querySelector('#about');
 
 let nameElement = profileInfo.querySelector('.profile__info_name');
 let aboutElement = profileInfo.querySelector('.profile__info_explorer');
+//info de perfil
+
+const userInfo = new UserInfo({name:'.profile__info_name', job:'.profile__info_explorer'});
+userInfo.getUserInfo();
+
 //formulario de perfil
 
 const editProfilePopup = new PopupWithForm('#edit-popup', (formData)=>{
-  develop
+    userInfo.setUserInfo(formData);
 });
 editProfilePopup.setEventListeners();
 
@@ -56,10 +61,6 @@ const validateProfile = new FormValidator(form);
 
 validateProfile.enableValidation();
 
-form.addEventListener('submit', (evt)=>{
-  evt.preventDefault();
-  addProfileInfo();
-});
 
 //formualrio de new card
 let newPlaceForm = document.querySelector('.form--new-place');
