@@ -1,17 +1,19 @@
 export default class Popup{
     constructor(popupSelector){
-        this._popupSelector = popupSelector;
-        this._closeIcon = popupSelector.querySelector('.form__close-icon')
+        this._popup = document.querySelector(popupSelector);
+        this.closeIcon = this._popup.querySelector('.form__close-icon') || 
+        this._popup.querySelector('.close-icon');
+    console.log('Close icon encontrado:', this._closeIcon);
         this._fade = document.querySelector('.fade');
     }
     open(){
-        this._popupSelector.setAttribute("style", "display: flex");
+        this._popup.setAttribute("style", "display: flex");
         document.addEventListener('keydown', this._handleEscapeClose());
         this._fade.setAttribute('style', 'display: block');
     }
 
     close(){
-        this._popupSelector.setAttribute("style", "display: none");
+        this._popup.setAttribute("style", "display: none");
         document.removeEventListener('keydown', this._handleEscapeClose());
         this._fade.setAttribute('style', 'display: none');
     }
@@ -23,7 +25,7 @@ export default class Popup{
             }
     }
     setEventListeners(){
-        this._closeIcon.addEventListener('click', () =>{
+        this.closeIcon.addEventListener('click', () =>{
         this.close()}); 
         this._fade.addEventListener('click', () =>{
         this.close()}); 

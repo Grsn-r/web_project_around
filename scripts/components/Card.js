@@ -3,7 +3,6 @@ export default class Card{
         this.name = name;
         this.link = link;
         this.handleCardClick = handleCardClick;
-        this.elements = document.querySelector('.elements');
         this.template = document.querySelector("#new-card").content.querySelector(".block");
     }
     getCloneCard(){
@@ -11,7 +10,7 @@ export default class Card{
     }
     getCard(){
         this.element = this.getCloneCard();
-        this.element.querySelector(".block__ftr p").textContent = this.name
+        this.element.querySelector("#new-card-title").textContent = this.name
         this.element.querySelector(".block__img").src = this.link
         this.setEventListeners(this.element.querySelector(".block__erase-button"), 
     this.element.querySelector(".block__button"),

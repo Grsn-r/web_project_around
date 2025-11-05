@@ -44,7 +44,7 @@ let nameElement = profileInfo.querySelector('.profile__info_name');
 let aboutElement = profileInfo.querySelector('.profile__info_explorer');
 //formulario de perfil
 
-const editProfilePopup = new Popup(form);
+const editProfilePopup = new Popup('.form');
 editButton.addEventListener('click', () =>{
   editProfilePopup.open();
   editProfilePopup.setEventListeners();
@@ -70,7 +70,7 @@ form.addEventListener('submit', (evt)=>{
 let newPlaceForm = document.querySelector(".form--new-place");
 const addCardButton = profile.querySelector('.profile__add-button');
 
-const newCardPopup = new Popup(newPlaceForm);
+const newCardPopup = new Popup(".form--new-place");
 addCardButton.addEventListener('click', ()=>{
   newCardPopup.open();
   newCardPopup.setEventListeners();
