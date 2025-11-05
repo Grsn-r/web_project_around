@@ -1,4 +1,4 @@
-export class Card{
+export default class Card{
     constructor(name, link, handleCardClick ) {
         this.name = name;
         this.link = link;
@@ -37,38 +37,3 @@ export class Card{
         })
     }
 }
-
-
-    getFullImage(){
-        const imgFull = this.imgTemplate.cloneNode(true);
-        const imgCloseIcon = imgFull.querySelector(".close-icon");
-        const picture = imgFull.querySelector(".card-img");
-        const imgFtr = imgFull.querySelector(".img-footer");
-
-        picture.src = this.link;
-        imgFtr.textContent = this.name;
-        this.fade.setAttribute('style', 'display: block');
-        this.elements.prepend(imgFull);
-
-        this.fade.addEventListener('click', (evt) => {
-            if (evt.target === this.fade) {
-                this.closeFullImage();
-            }
-        })
-
-        imgCloseIcon.addEventListener('click', () => {
-            this.closeFullImage();
-        })
-        document.addEventListener('keydown', (evt) => {
-        if (evt.key === 'Escape') {
-        }
-        });
-    }
-    closeFullImage(){
-        const popUpElement = document.querySelector(".img-full");
-        if (popUpElement) {
-            popUpElement.remove();
-            this.fade.setAttribute('style', 'display: none');
-        }
-    }
-

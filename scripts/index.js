@@ -1,7 +1,8 @@
-import {Card} from "./components/Card.js";
-import { FormValidator } from "./components/FormValidator.js";
+import Card from "./components/Card.js";
+import FormValidator from "./components/FormValidator.js";
 import Section from "./components/Section.js";
 import Popup from "./components/popup.js";
+import PopupWithImage from "./components/PopupWithImage.js";
 
 const initialCards = [
   {
@@ -88,11 +89,17 @@ newPlaceForm.addEventListener('submit', (evt)=>{
   createCard(titleNP.value, imgUrl.value );
   hideFormNewPlace();
 });
+//popup de imagenes
 
+const imagePopup = new PopupWithImage('#image-popup');
+imagePopup.setEventListeners();
+function handleCardClick(imageData) {
+    imagePopup.open(imageData.caption, imageData.src);
+}
 // nuevas cards
 
 const createCard = ( name, link ) => {
-    const cardElement = new Card(name, link).getCard();
+    const cardElement = new Card(name, link, handleCardClick).getCard();
     return cardElement;
 }
 
