@@ -33,7 +33,6 @@ const initialCards = [
 ];
 
 const profile = document.querySelector('.profile')
-const editButton = profile.querySelector('.edit-button')
 const form = document.querySelector('.form')
 const profileInfo = profile.querySelector('.profile__info')
 
@@ -54,6 +53,12 @@ const editProfilePopup = new PopupWithForm('#edit-popup', (formData)=>{
     userInfo.setUserInfo(formData);
 });
 editProfilePopup.setEventListeners();
+
+const editButton = document.querySelector('.edit-button');
+editButton.addEventListener('click', ()=>{
+  editProfilePopup.open();
+})
+
 
 // validar formulario perfil
 

@@ -6,7 +6,6 @@ export default class Section{
     }
 
     renderItems(){
-         console.log('Renderizando items:', this._items);
         this._items.forEach((item) =>{
           const cards = this._renderer(item);
           this.addItem(cards);
