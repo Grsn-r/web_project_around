@@ -59,7 +59,6 @@ editButton.addEventListener('click', ()=>{
   editProfilePopup.open();
 })
 
-
 // validar formulario perfil
 
 const validateProfile = new FormValidator(form);
