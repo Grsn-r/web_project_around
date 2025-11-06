@@ -32,17 +32,7 @@ const initialCards = [
   }
 ];
 
-const profile = document.querySelector('.profile')
 const form = document.querySelector('.form')
-const profileInfo = profile.querySelector('.profile__info')
-
-
-let profileName = form.querySelector('#name');
-let about = form.querySelector('#about');
-
-let nameElement = profileInfo.querySelector('.profile__info_name');
-let aboutElement = profileInfo.querySelector('.profile__info_explorer');
-//info de perfil
 
 const userInfo = new UserInfo({name:'.profile__info_name', job:'.profile__info_explorer'});
 userInfo.getUserInfo();
@@ -62,36 +52,15 @@ editButton.addEventListener('click', ()=>{
 // validar formulario perfil
 
 const validateProfile = new FormValidator(form);
-
 validateProfile.enableValidation();
 
 
-//formualrio de new card
-let newPlaceForm = document.querySelector('.form--new-place');
-const addCardButton = profile.querySelector('.profile__add-button');
-
-//const newCardPopup = new PopupWithForm('#add-card-popup', ())
-
-let titleNP = newPlaceForm.querySelector("#title");
-let imgUrl = newPlaceForm.querySelector("#img-url");
-
-//validacion New Card
-const validateNewCard = new FormValidator(newPlaceForm);
-
-validateNewCard.enableValidation();
-
-newPlaceForm.addEventListener('submit', (evt)=>{
-  evt.preventDefault();
-  createCard(titleNP.value, imgUrl.value );
-  hideFormNewPlace();
-});
 //popup de imagenes
 
-// nuevas cards
+// cards
 
 const createCard = ({name, link}) => {
     const cardElement = new Card({name, link}).getCard();
-    
     return cardElement;
 }
 
@@ -101,3 +70,26 @@ const cardSection = new Section({items: initialCards,
   }
 }, '.elements');
 cardSection.renderItems();
+
+//formualrio de new card
+let newPlaceForm = document.querySelector('.form--new-place');
+
+const newCardPopup = new PopupWithForm('#add-card-popup', (cardData)=>{
+  const modifiedData = {
+    name: cardData.title,
+    link: cardData['img-url']
+  }
+  const newCard = createCard(modifiedData);
+  cardSection.addItem(newCard);
+});
+newCardPopup.setEventListeners();
+
+const addCardButton = document.querySelector('.profile__add-button');
+
+addCardButton.addEventListener('click', ()=>{
+  newCardPopup.open();
+});
+
+//validacion New Card
+const validateNewCard = new FormValidator(newPlaceForm);
+validateNewCard.enableValidation();
