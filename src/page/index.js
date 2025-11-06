@@ -70,6 +70,7 @@ validateProfile.enableValidation();
 let newPlaceForm = document.querySelector('.form--new-place');
 const addCardButton = profile.querySelector('.profile__add-button');
 
+//const newCardPopup = new PopupWithForm('#add-card-popup', ())
 
 let titleNP = newPlaceForm.querySelector("#title");
 let imgUrl = newPlaceForm.querySelector("#img-url");
@@ -88,15 +89,15 @@ newPlaceForm.addEventListener('submit', (evt)=>{
 
 // nuevas cards
 
-const createCard = ( name, link ) => {
-    const cardElement = new Card(name, link).getCard();
+const createCard = ({name, link}) => {
+    const cardElement = new Card({name, link}).getCard();
     
     return cardElement;
 }
 
 const cardSection = new Section({items: initialCards, 
   renderer: (cardData) => {
-    return createCard(cardData.name, cardData.link);
+    return createCard(cardData);
   }
 }, '.elements');
 cardSection.renderItems();

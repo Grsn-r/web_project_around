@@ -1,5 +1,5 @@
 export default class Card{
-    constructor(name, link) {
+    constructor({name, link}) {
         this.name = name;
         this.link = link;
         this.template = document.querySelector("#new-card").content.querySelector(".block");
