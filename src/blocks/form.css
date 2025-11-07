@@ -48,7 +48,7 @@
     font-size: 14px;
     color:rgba(0, 0, 0, 1);
 }
-.save-button{
+.form__save-button{
     text-align: center;
     height: 50px;
     margin-top: 50px;
@@ -70,11 +70,7 @@
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 1);
 }
-.create-button--inactive{
-     background-color: transparent;
-    color: rgba(196, 196, 196, 1);
-}
-.save-button--inactive{
+.form__save-button--inactive{
     background-color: transparent;
     color: rgba(196, 196, 196, 1);
     cursor:not-allowed;
@@ -83,7 +79,7 @@
     cursor: url(../images/puntero-custom.png), pointer;
     opacity: 80%;
 }
-.save-button:hover{
+.form__save-button:hover{
     cursor: pointer;
     opacity: 80%;
 }
