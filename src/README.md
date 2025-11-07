@@ -4,9 +4,10 @@ El botón de editar perfil abre un formulario pop-up que solo habilita el botón
 Los dagtos ingresados en el formulario se guardan al hacer click en 'guardar' si está en forma activa.
 Efecto 'hover' en los botones aplica puntero personalizado y atenuación según indica el diseño.
 Bonotes de cerrar en los formularios funcionan correctamente
-Agregada función de añadir nuevas cards
-Las nuevas cards se pueden eliminar y dar like
-funcion de like y eliminar funcional en las cards por defecto
-se abren las imágenes en pantalla completa al dar click y aaparecen centradas
+Función de añadir nuevas cards
+Las nuevas cards se pueden eliminar y dar like así como a las que vienen por defecto.
+Se abren las imágenes en pantalla completa al dar click y aaparecen centradas.
+Todos los popups se cierran mediante 3 métodos: botón cerrar, tecla escape y click fuera de la ventana.
+se implementan clases para todas las funciones de popup, validación, edición de datos y generación de tarjetas.
 
 LINK grsn-r.github.io/web_project_around/

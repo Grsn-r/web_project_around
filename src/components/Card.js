@@ -1,3 +1,4 @@
+import PopupWithImage from "./PopupWithImage.js";
 export default class Card{
     constructor({name, link}) {
         this.name = name;
@@ -19,12 +20,17 @@ export default class Card{
     eraseCard(){
         this.element.remove();
     }
-    setEventListeners(erase, like){
+    setEventListeners(erase, like, img){
         erase.addEventListener('click', () => {
             this.eraseCard();
         });
         like.addEventListener('click', ()=> {
             like.classList.toggle("block__button-black")
         });
+        img.addEventListener('click', ()=>{
+            console.log(this.link, this.name, 'cadDarta');
+           const popupData = new PopupWithImage('#pop-up-img');
+           popupData.getData( this.link, this.name);
+        })
     }
 }
