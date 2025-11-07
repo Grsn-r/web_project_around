@@ -60,7 +60,7 @@
     background-color: rgba(0, 0, 0, 1);
 }
 .create-button{
-     text-align: center;
+    text-align: center;
     height: 50px;
     margin-top: 50px;
     border-radius: 2px;
@@ -71,6 +71,13 @@
     background-color: rgba(0, 0, 0, 1);
 }
 .form__save-button--inactive{
+    text-align: center;
+    height: 50px;
+    margin-top: 50px;
+    border-radius: 2px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
     background-color: transparent;
     color: rgba(196, 196, 196, 1);
     cursor:not-allowed;

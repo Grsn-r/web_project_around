@@ -53,9 +53,6 @@ editButton.addEventListener('click', ()=>{
 const validateProfile = new FormValidator(form);
 validateProfile.enableValidation();
 
-
-//popup de imagenes
-
 // cards
 
 const createCard = ({name, link}) => {

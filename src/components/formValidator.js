@@ -22,14 +22,15 @@ _validateInput = (input) => {
     };
 };
 toggleButton = (inputList) => {
-    const createButton = this.formElement.querySelector(".form__save-button");
+    const createButton = this.formElement.querySelector("#form__save-button");
     const isInputValidNP = inputList.every((input) => input.validity.valid);
     if (!isInputValidNP) {
         createButton.disabled = true;
         createButton.classList.add("form__save-button--inactive");
     } else {
         createButton.disabled = false;
-        createButton.classList.remove("form__save-button--inactive")
+        createButton.classList.remove("form__save-button--inactive");
+        createButton.classList.add("form__save-button");
     }
 };
 _setEventListeners(){

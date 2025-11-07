@@ -45,18 +45,18 @@
              <span id="name-error"></span>
              <input class="form__input" id="about" type="text" placeholder="Acerca de mi" minlength="2" maxlength="200" required>
              <span id="about-error"></span>
-     <button type="submit" class="form__save-button form__save-button--inactive" disabled>Guardar</button>
+     <button type="submit" class="form__save-button--inactive" id="form__save-button" disabled>Guardar</button>
          </form>
      </div>
-     <div class="popup popup--new-place" id="add-card-popup">
-         <form class="form form--new-place" novalidate> 
+     <div class="popup--new-place" id="add-card-popup">
+         <form class="form--new-place" novalidate> 
              <img class="form__close-icon" src="./images/Close_Icon.png" alt="boton de cierre">
              <h1 class="form__title">Nuevo lugar</h1>
              <input class="form__input" id="title" type="text" placeholder="Título" minlength="2" maxlength="200" required>
              <span id="title-error"></span>
              <input class="form__input" id="img-url" type="url" placeholder="Enlace a imagen" required>
              <span id="img-url-error"></span>
-             <button type="submit" class="form__save-button form__save-button--inactive">Crear</button>
+             <button type="submit" class="form__save-button--inactive" id="form__save-button" disabled>Crear</button>
          </form>
      </div>
      <div class="img-container"></div>
