@@ -37,36 +37,36 @@
             </div>
             </template>
         </section>
-  <div id="edit-popup">
-  <form class="form" novalidate> 
-    <img class="form__close-icon" src="./images/Close_Icon.png" alt="boton de cierre">
-    <h1 class="form__title">Editar Perfil</h1>
-    <input class="form__input" id="name" type="text" placeholder="Nombre" minlength="2" maxlength="20" required>
-    <span id="name-error"></span>
-    <input class="form__input" id="about" type="text" placeholder="Acerca de mi" minlength="2" maxlength="200" required>
-    <span id="about-error"></span>
-    <button type="submit" class="form__save-button form__save-button--inactive" disabled>Guardar</button>
-  </form>
-</div>
-<div id="add-card-popup">
-  <form class="form form--new-place" novalidate> 
-    <img class="form__close-icon" src="./images/Close_Icon.png" alt="boton de cierre">
-    <h1 class="form__title">Nuevo lugar</h1>
-    <input class="form__input" id="title" type="text" placeholder="Título" minlength="2" maxlength="200" required>
-    <span id="title-error"></span>
-    <input class="form__input" id="img-url" type="url" placeholder="Enlace a imagen" required>
-    <span id="img-url-error"></span>
-    <button type="submit" class="form__save-button form__save-button--inactive">Crear</button>
-  </form>
-</div>
-<div class="img-container"></div>
-<template id="pop-up-img">
+     <div id="edit-popup">
+         <form class="form" novalidate> 
+             <img class="form__close-icon" src="./images/Close_Icon.png" alt="boton de cierre">
+             <h1 class="form__title">Editar Perfil</h1>
+             <input class="form__input" id="name" type="text" placeholder="Nombre" minlength="2" maxlength="20" required>
+             <span id="name-error"></span>
+             <input class="form__input" id="about" type="text" placeholder="Acerca de mi" minlength="2" maxlength="200" required>
+             <span id="about-error"></span>
+     <button type="submit" class="form__save-button form__save-button--inactive" disabled>Guardar</button>
+         </form>
+     </div>
+     <div id="add-card-popup">
+         <form class="form form--new-place" novalidate> 
+             <img class="form__close-icon" src="./images/Close_Icon.png" alt="boton de cierre">
+             <h1 class="form__title">Nuevo lugar</h1>
+             <input class="form__input" id="title" type="text" placeholder="Título" minlength="2" maxlength="200" required>
+             <span id="title-error"></span>
+             <input class="form__input" id="img-url" type="url" placeholder="Enlace a imagen" required>
+             <span id="img-url-error"></span>
+             <button type="submit" class="form__save-button form__save-button--inactive">Crear</button>
+         </form>
+     </div>
+     <div class="img-container"></div>
+     <template id="pop-up-img">
         <div class="img-full">
             <img class="close-icon" src="./images/Close_Icon.png" alt="boton de cierre">
             <img class="card-img" src="" alt="imagen tamaño grande">
             <p class="img-footer"></p>
         </div>
-</template>
+     </template>
         <footer class="footer">© 2025 Around The U.S.</footer>
     </div>
     <script src="./page/index.js" type="module"></script>
