@@ -3,6 +3,23 @@ import FormValidator from "../components/formValidator.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithform.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
+
+const api = new Api({
+  baseUrl: 'https://around-api.es.tripleten-services.com/v1',
+  headers: {
+    authorization: '88bf8be5-e58e-46db-961b-c33270fb62a8',
+    'Content-Type': 'application/json'
+  }
+});
+
+api.getInitialCards()
+.then((cards) => {
+console.log(cards);
+})
+.catch((err) => {
+console.log(err);
+});
 
 const initialCards = [
   {

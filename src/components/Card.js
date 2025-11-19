@@ -28,7 +28,6 @@ export default class Card{
             like.classList.toggle("block__button-black")
         });
         img.addEventListener('click', ()=>{
-            console.log(this.link, this.name, 'cadDarta');
            const popupData = new PopupWithImage('#pop-up-img');
            popupData.getData( this.link, this.name);
         })
