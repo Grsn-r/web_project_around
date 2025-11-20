@@ -16,8 +16,6 @@ export default class Api{
       .then(this._checkResponse);
     }
     getInitialCards(){
-        const url = `${this._baseUrl}/cards`;
-        console.log('URL construida:', url);
         return fetch(`${this._baseUrl}/cards`, {headers: this._headers})
         .then(this._checkResponse)
     }
