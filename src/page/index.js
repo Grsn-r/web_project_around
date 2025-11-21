@@ -47,15 +47,17 @@ const editProfilePopup = new PopupWithForm('#edit-popup', (formData)=>{
 });
 editProfilePopup.setEventListeners();
 
+// validar formulario perfil
+const validateProfile = new FormValidator(form);
+
 const editButton = document.querySelector('.edit-button');
 editButton.addEventListener('click', ()=>{
   editProfilePopup.open();
+  validateProfile.enableValidation();
 })
 
-// validar formulario perfil
 
-const validateProfile = new FormValidator(form);
-validateProfile.enableValidation();
+
 
 // cards
 
@@ -74,6 +76,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
  userInfo.setUserInfo(userData);
  cardSection._items = cards;
  cardSection.renderItems(cards);
+ cardSection.close();
 })
 .catch((err) => {
   console.log('Error en Promise.all',err);
@@ -83,12 +86,25 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 let newPlaceForm = document.querySelector('.form--new-place');
 
 const newCardPopup = new PopupWithForm('#add-card-popup', (cardData)=>{
+  const submitButton = editProfilePopup._form.querySelector('#form__save-button');
+  const originalText = submitButton.textContent;
+  submitButton.textContent = 'Guardando...';
   const modifiedData = {
     name: cardData.title,
     link: cardData['img-url']
   }
-  const newCard = createCard(modifiedData);
-  cardSection.addItem(newCard);
+  api.addCard(modifiedData)
+  .then((newCardData)=>{
+    const newCard = createCard(newCardData);
+    cardSection.addItem(newCard);
+    newCardPopup.close();
+  })
+  .catch((err)=>{
+    console.log('Error al crear tarjeta:', err);
+  })
+  .finally(()=>{
+    submitButton.textContent = originalText;
+  })
 });
 newCardPopup.setEventListeners();
 
@@ -96,6 +112,7 @@ const addCardButton = document.querySelector('.profile__add-button');
 
 addCardButton.addEventListener('click', ()=>{
   newCardPopup.open();
+  validateNewCard.toggleButton();
 });
 
 //validacion New Card

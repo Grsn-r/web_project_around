@@ -11,7 +11,6 @@ export default class PopupWithForm extends Popup{
         super.open();
         this._form.reset();
         this._form.setAttribute('style', 'display: flex');
-        this._form.classList.add('popup_opened');
     }
 
      _getInputValues() {

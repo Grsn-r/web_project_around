@@ -27,4 +27,12 @@ export default class Api{
         })
         .then(this._checkResponse)
     }
+    addCard(data){
+        return fetch(`${this._baseUrl}/cards`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify(data)
+        })
+        .then(this._checkResponse);
+    }
 }

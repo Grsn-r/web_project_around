@@ -59,17 +59,6 @@
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 1);
 }
-.create-button{
-    text-align: center;
-    height: 50px;
-    margin-top: 50px;
-    border-radius: 2px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 100%;
-    color: rgba(255, 255, 255, 1);
-    background-color: rgba(0, 0, 0, 1);
-}
 .form__save-button--inactive{
     text-align: center;
     height: 50px;
@@ -81,10 +70,6 @@
     background-color: transparent;
     color: rgba(196, 196, 196, 1);
     cursor:not-allowed;
-}
-.create-button:hover{
-    cursor: url(../images/puntero-custom.png), pointer;
-    opacity: 80%;
 }
 .form__save-button:hover{
     cursor: pointer;
