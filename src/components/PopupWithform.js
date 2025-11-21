@@ -33,7 +33,6 @@ export default class PopupWithForm extends Popup{
 
     close(){
         this._form.setAttribute('style', 'display: none');
-        this._form.classList.remove('popup_opened');
         this._form.reset();
         super.close();
     }

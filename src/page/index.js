@@ -112,7 +112,6 @@ const addCardButton = document.querySelector('.profile__add-button');
 
 addCardButton.addEventListener('click', ()=>{
   newCardPopup.open();
-  validateNewCard.toggleButton();
 });
 
 //validacion New Card
