@@ -20,9 +20,30 @@ console.log(cards);
 .catch((err) => {
 console.log(err);
 });
+//editar avatar
+
+const avatarPopup = document.querySelector('.profile__popup');
+const avatar = document.querySelector('.profile__avatar');
+const editAvatarButton = document.querySelector('.profile__avatar_edit');
+const form = document.querySelector('.form');
+
+const validateAvatar = new FormValidator(avatarPopup);
+validateAvatar.enableValidation();
 
 
-const form = document.querySelector('.form')
+avatar.addEventListener('mouseenter', ()=>{
+  avatar.style.opacity = '80%';
+  editAvatarButton.style.display = 'flex';
+  editAvatarButton.addEventListener('mouseenter', ()=>{
+    avatar.style.opacity = '80%';
+    editAvatarButton.style.display = 'flex';
+  })
+});
+
+avatar.addEventListener('mouseleave', ()=>{
+  avatar.style.opacity = '100%';
+  editAvatarButton.style.display = 'none';
+})
 
 const userInfo = new UserInfo({name:'.profile__info_name', job:'.profile__info_explorer'});
 userInfo.getUserInfo();
