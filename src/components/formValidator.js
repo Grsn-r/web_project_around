@@ -10,7 +10,7 @@ showError = (input, errorMessage) => {
 }
 hideError = (input) => {
     const formError = this.formElement.querySelector(`#${input.id}-error`);
-    input.classList.remove(".form__input_invalid");
+    input.classList.remove("form__input_invalid");
     formError.classList.remove("form__input-error");
     formError.textContent = "";
 }

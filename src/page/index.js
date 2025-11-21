@@ -30,7 +30,20 @@ userInfo.getUserInfo();
 //formulario de perfil
 
 const editProfilePopup = new PopupWithForm('#edit-popup', (formData)=>{
-    userInfo.setUserInfo(formData);
+  const submitButton = editProfilePopup._form.querySelector('#form__save-button');
+  const originalText = submitButton.textContent;
+  submitButton.textContent = 'Guardando...';
+    api.updateUserInfo(formData)
+    .then((userData)=>{
+      userInfo.setUserInfo(userData);
+      editProfilePopup.close();
+    })
+    .catch((err)=>{
+      console.error(`Error al actualizar perfil:`, err);
+    })
+    .finally(()=>{
+      submitButton.textContent = originalText;
+    })
 });
 editProfilePopup.setEventListeners();
 
