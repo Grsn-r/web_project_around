@@ -4,8 +4,10 @@
 }
 .profile__avatar{
     height: 127.5px;
+    width: 127.5px;
     border-radius: 120px;
     margin-right: 45px;
+    background-size:auto;
 }
 .profile__avatar_edit{
     position: absolute;
@@ -15,6 +17,9 @@
     top: 50px;
     left: 50px;
     display: none;
+}
+.profile__avatar_edit:hover{
+    cursor: pointer;
 }
 .profile__info{
     display: flex;

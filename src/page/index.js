@@ -13,13 +13,28 @@ const api = new Api({
   }
 });
 
-api.getInitialCards()
-.then((cards) => {
-console.log(cards);
+// cards
+
+const createCard = ({name, link}) => {
+    const cardElement = new Card({name, link}).getCard();
+    return cardElement;
+}
+
+const cardSection = new Section({items: [], 
+  renderer: (cardData) => {
+    return createCard(cardData);
+  }
+}, '.elements');
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+.then(([userData, cards]) => {
+ userInfo.setUserInfo(userData);
+ cardSection._items = cards;
+ cardSection.renderItems();
 })
 .catch((err) => {
-console.log(err);
+  console.log('Error en Promise.all',err);
 });
+
 //editar avatar
 
 const avatarPopup = document.querySelector('.profile__popup');
@@ -27,6 +42,7 @@ const avatar = document.querySelector('.profile__avatar');
 const editAvatarButton = document.querySelector('.profile__avatar_edit');
 const form = document.querySelector('.form');
 
+//validar edicion de avatar
 const validateAvatar = new FormValidator(avatarPopup);
 validateAvatar.enableValidation();
 
@@ -45,6 +61,32 @@ avatar.addEventListener('mouseleave', ()=>{
   editAvatarButton.style.display = 'none';
 })
 
+const popupAvatar = new PopupWithForm('#profile__popup', (formData)=>{
+  const submitButton = popupAvatar._form.querySelector('#form__save-button');
+  const originalText = submitButton.textContent;
+  submitButton.textContent = 'Guardando...';
+  const avatarData = {
+    avatar: formData['avatar-url']
+  };
+  api.updateAvatar(avatarData)
+  .then((updateData)=>{
+    avatar.src = updateData.avatar;
+    popupAvatar.close();
+  })
+  .catch((err)=>{
+    console.log('Error al actualizar avatar:', err);
+  })
+  .finally(()=>{
+    submitButton.textContent = originalText;
+  })
+})
+popupAvatar.setEventListeners();
+
+editAvatarButton.addEventListener('click', ()=>{
+  popupAvatar.open();
+})
+
+// user info 
 const userInfo = new UserInfo({name:'.profile__info_name', job:'.profile__info_explorer'});
 userInfo.getUserInfo();
 
@@ -78,30 +120,6 @@ editButton.addEventListener('click', ()=>{
 })
 
 
-
-
-// cards
-
-const createCard = ({name, link}) => {
-    const cardElement = new Card({name, link}).getCard();
-    return cardElement;
-}
-
-const cardSection = new Section({items: [], 
-  renderer: (cardData) => {
-    return createCard(cardData);
-  }
-}, '.elements');
-Promise.all([api.getUserInfo(), api.getInitialCards()])
-.then(([userData, cards]) => {
- userInfo.setUserInfo(userData);
- cardSection._items = cards;
- cardSection.renderItems(cards);
- cardSection.close();
-})
-.catch((err) => {
-  console.log('Error en Promise.all',err);
-});
 
 //formualrio de new card
 let newPlaceForm = document.querySelector('.form--new-place');

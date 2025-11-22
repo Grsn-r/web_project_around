@@ -18,20 +18,22 @@
             <div style="position: relative;"> <img class="profile__avatar" src="./images/avatar.jpg" alt="foto de perfil">
             <img class="profile__avatar_edit" src="./images/edit_avatar_btn.png" alt="editar foto"></div>
             <div class="profile__info">
-                <p class="profile__info profile__info_name">Jacques Cousteau</p>
-                <p class="profile__info profile__info_explorer">Explorador</p>
+                <p class="profile__info profile__info_name"></p>
+                <p class="profile__info profile__info_explorer"></p>
             </div>
             <img class="edit-button" src="./images/edit-button.png" alt="boton de editar">
             <div class="profile__add-button">
                 <img class="profile__add-button profile__add-button_img" src="./images/add-btn-img.png" alt="boton de añadir">
             </div>
-            <form class="profile__popup form" novalidate>
+            <div id="profile__popup">
+                <form class="form profile__popup" novalidate>
                 <img class="form__close-icon" src="./images/Close_Icon.png" alt="boton de cierre">
                 <h1 class="form__title">Cambiar foto de perfil</h1>
-                <input class="form__input" type="url" id="avatar-url" placeholder="Enlace a foto" minlength="2" required>
+                <input class="form__input" type="url" id="avatar-url" name="avatar-url" placeholder="Enlace a foto" minlength="2" required>
                 <span id="avatar-url-error"></span>
                 <button type="submit" class="form__save-button--inactive" id="form__save-button" disabled>Guardar</button>
             </form>
+            </div>
         </section>
         <section class="elements">
             <template id="new-card">
@@ -44,6 +46,12 @@
                 </div>
             </div>
             </template>
+            <div class="elements__popup" id="erase-popup">
+                <form class="elements__popup_form" novalidate>
+                    <h1 class="form__title">¿Estas seguro?</h1>
+                    <button type="button" class="form__save-button">Sí</button>
+                </form>
+            </div>
         </section>
      <div class="popup" id="edit-popup">
          <form class="form" novalidate> 
