@@ -15,8 +15,8 @@ const api = new Api({
 
 // cards
 
-const createCard = ({name, link}) => {
-    const cardElement = new Card({name, link}).getCard();
+const createCard = (cardData) => {
+    const cardElement = new Card(cardData).getCard();
     return cardElement;
 }
 

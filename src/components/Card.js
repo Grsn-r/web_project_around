@@ -1,8 +1,11 @@
 import PopupWithImage from "./PopupWithImage.js";
 export default class Card{
-    constructor({name, link}) {
+    constructor({name, link, _id}, handleDeleteClick, api) {
         this.name = name;
         this.link = link;
+        this._id = _id;
+        this.handleDeleteClick = handleDeleteClick;
+        this.api = api;
         this.template = document.querySelector("#new-card").content.querySelector(".block");
     }
     getCloneCard(){
@@ -22,7 +25,7 @@ export default class Card{
     }
     setEventListeners(erase, like, img){
         erase.addEventListener('click', () => {
-            this.eraseCard();
+            this.handleDeleteClick(this._id);
         });
         like.addEventListener('click', ()=> {
             like.classList.toggle("block__button-black")
