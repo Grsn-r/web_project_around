@@ -10,7 +10,6 @@ export default class PopupWithConfirmation extends Popup{
     open(){
         super.open();
         this._popupErase.style.display = 'flex';
-        console.log('form encontrado',this._popupErase);
     }
 
     setSubmitAction(action){
