@@ -1,11 +1,12 @@
 import PopupWithImage from "./PopupWithImage.js";
 export default class Card{
-    constructor({name, link, _id}, handleDeleteClick, api) {
+    constructor({name, link, _id}, handleDeleteClick, api, confirmationPopup) {
         this.name = name;
         this.link = link;
         this._id = _id;
         this.handleDeleteClick = handleDeleteClick;
         this.api = api;
+        this.confirmationPopup = confirmationPopup;
         this.template = document.querySelector("#new-card").content.querySelector(".block");
     }
     getCloneCard(){
@@ -25,7 +26,15 @@ export default class Card{
     }
     setEventListeners(erase, like, img){
         erase.addEventListener('click', () => {
-            this.handleDeleteClick(this._id);
+            this.confirmationPopup.setSubmitAction(()=>{
+                this.api.eraseCard(this._id)
+                .then(()=>{
+                    this.eraseCard();
+                    this.confirmationPopup.close();
+                })
+                .catch(err=>{console.log('Error al intentar borrar tarjeta',err);})
+            })
+            this.confirmationPopup.open();
         });
         like.addEventListener('click', ()=> {
             like.classList.toggle("block__button-black")

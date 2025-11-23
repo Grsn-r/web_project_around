@@ -4,6 +4,7 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithform.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 
 const api = new Api({
   baseUrl: 'https://around-api.es.tripleten-services.com/v1',
@@ -14,9 +15,16 @@ const api = new Api({
 });
 
 // cards
+const confirmationPopup = new PopupWithConfirmation('#erase-popup');
+confirmationPopup.setEventListeners();
 
 const createCard = (cardData) => {
-    const cardElement = new Card(cardData).getCard();
+    const cardElement = new Card(
+      cardData,
+      null,
+      api,
+      confirmationPopup
+    ).getCard();
     return cardElement;
 }
 
