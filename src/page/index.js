@@ -38,6 +38,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
  userInfo.setUserInfo(userData);
  cardSection._items = cards;
  cardSection.renderItems();
+ avatar.src = userData.avatar;
 })
 .catch((err) => {
   console.log('Error en Promise.all',err);
@@ -48,7 +49,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 const avatarPopup = document.querySelector('.profile__popup');
 const avatar = document.querySelector('.profile__avatar');
 const editAvatarButton = document.querySelector('.profile__avatar_edit');
-const form = document.querySelector('.form');
+const form = document.querySelector('#edit-popup');
 
 //validar edicion de avatar
 const validateAvatar = new FormValidator(avatarPopup);
@@ -120,11 +121,11 @@ editProfilePopup.setEventListeners();
 
 // validar formulario perfil
 const validateProfile = new FormValidator(form);
+validateProfile.enableValidation();
 
 const editButton = document.querySelector('.edit-button');
 editButton.addEventListener('click', ()=>{
   editProfilePopup.open();
-  validateProfile.enableValidation();
 })
 
 
