@@ -56,20 +56,6 @@ const validateAvatar = new FormValidator(avatarPopup);
 validateAvatar.enableValidation();
 
 
-avatar.addEventListener('mouseenter', ()=>{
-  avatar.style.opacity = '80%';
-  editAvatarButton.style.display = 'flex';
-  editAvatarButton.addEventListener('mouseenter', ()=>{
-    avatar.style.opacity = '80%';
-    editAvatarButton.style.display = 'flex';
-  })
-});
-
-avatar.addEventListener('mouseleave', ()=>{
-  avatar.style.opacity = '100%';
-  editAvatarButton.style.display = 'none';
-})
-
 const popupAvatar = new PopupWithForm('#profile__popup', (formData)=>{
   const submitButton = popupAvatar._form.querySelector('#form__save-button');
   const originalText = submitButton.textContent;

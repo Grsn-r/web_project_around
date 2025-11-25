@@ -2,12 +2,23 @@
     display: flex;
     margin: 0 0 45px;
 }
+.profile__avatar-container{
+    position: relative;
+}
+.profile__avatar-container:hover .profile__avatar_edit{
+    opacity: 1;
+}
+.profile__avatar-container:hover .profile__avatar{
+    transform: scale(1.1);
+}
 .profile__avatar{
     height: 127.5px;
     width: 127.5px;
     border-radius: 120px;
     margin-right: 45px;
-    background-size:auto;
+    background-size: auto;
+    transition-property: transform;
+    transition-duration: 0.5s;
 }
 .profile__avatar_edit{
     position: absolute;
@@ -16,11 +27,11 @@
     height: 26px;
     top: 50px;
     left: 50px;
-    display: none;
-}
-.profile__avatar_edit:hover{
+    opacity: 0;
+    transition: opacity 0.3s ease;
     cursor: pointer;
 }
+
 .profile__info{
     display: flex;
     flex-direction: column;

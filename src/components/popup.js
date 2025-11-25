@@ -22,7 +22,6 @@ export default class Popup{
     }
     setEventListeners(){
         this.closeIcon.addEventListener('click', () =>{
-            console.log('orden de cerrar dada');
         this.close()}); 
         this._fade.addEventListener('click', () =>{
         this.close()}); 
